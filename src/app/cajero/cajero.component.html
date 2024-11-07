@@ -1,0 +1,43 @@
+<header></header>
+<!-- codigo html basado en bootstrap -->
+  <div class="container-fluid vh-100 main-bg position-relative overflow-auto">
+    <div class="row row-cols-1 row-cols-md-3 d-flex justify-content-center p-2 w-100 bg-success text-white">
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://gowi.mx/wp-content/uploads/2022/07/Cliente-Logo-Banco-Azteca.png" class="d-flex justify-content-center w-100" alt="...">
+            <div class="card-body h-50">
+                <div class="text-center text-success fs-1">Cajero automatico</div>
+              <div class="form-group">
+                  <label for="monto">Cantidad a retirar:</label>
+                  <input type="number" id="monto" class="form-control" [(ngModel)]="monto" placeholder="Ingrese la cantidad" />
+              </div>
+              <button class="btn btn-primary mt-3 text-center" (click)="onRetiro()">Retirar</button>
+              @if (alerta) {
+              <div class="mt-4 alert"
+                  [ngClass]="{'alert-success': resultado.length, 'alert-danger': !resultado.length}">
+                  {{ alerta }}
+              </div>
+              }
+          
+              @if (resultado.length) {
+              <div class="mt-4">
+                  <h2>Cantidades Entregadas:</h2>
+                  <ul class="list-group">
+                      @for (item of resultado; track $index) {
+                      <li class="list-group-item">
+                        <!-- uso de pipes para el tipo de dato -->
+                          {{ item.cantidad }} x {{ item.denominacion | currency }}
+                      </li>
+                      }
+                  </ul>
+              </div>
+              }
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">Banco Azteca</small>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <footer></footer>
